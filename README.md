@@ -1,6 +1,7 @@
 # SMART MESSENGER
 Demo Website Deployed to Vercel: https://smart-messenger.vercel.app/chat/BxKH1lBgfDIo2NhuvO3R
-(./public/smart messenger.png)
+
+![App interface](./public/smart_messenger.png)
 
 ## Obtain the keys for the environment constants
 
@@ -37,7 +38,7 @@ Demo Website Deployed to Vercel: https://smart-messenger.vercel.app/chat/BxKH1lB
    ```
 
 5. Add origins and redirect url in Google Cloud Console for your project, navigate to APIs & Services-Credentials-OAuth 2.0 Client IDs-Web client(auto created by Google Service), you should see the page like below:
-(./public/readmepic.png)
+![configuring page screenshot](./public/readmepic.png)
 
 ## Getting Started
 
