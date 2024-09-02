@@ -12,7 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const {prompt, chatId, model, session } = req.body;
+  const { prompt, chatId, model, session } = req.body;
 
   if (!prompt) {
     res.status(400).json({ answer: "Please provide a prompt!" });
@@ -22,11 +22,15 @@ export default async function handler(
   if (!chatId) {
     res.status(400).json({ answer: "Please provide a valid chat ID!" });
     return;
-  } 
+  }
 
   //ChatGPT query
-
-  const response = await query(prompt, chatId, model)
+  const messages = [{
+    "role": "system", "content": "You are a helpful assistant."
+  }, {
+    "role": "user", "content": prompt
+  }]
+  const response = await query(messages, model)
 
   const message: Message = {
     text: response || "Model was unable to find a answer for this prompt!",
@@ -38,14 +42,14 @@ export default async function handler(
     }
 
   }
-  
+
   await adminDb
-  .collection('users')
-  .doc(session?.user?.email)
-  .collection("chats")
-  .doc(chatId)
-  .collection("messages")
-  .add(message);
+    .collection('users')
+    .doc(session?.user?.email)
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add(message);
 
   res.status(200).json({ answer: message.text })
 }

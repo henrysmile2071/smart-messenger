@@ -1,15 +1,12 @@
+import { ChatCompletionMessageParam } from "openai/resources/chat/completions";
 import openai from "./chatgpt";
-
-const query = async (prompt: string, chatId: string, model: string) => {
-  const res = await openai.createCompletion({
+const query = async (messages: ChatCompletionMessageParam[], model: string) => {
+  const res = await openai.chat.completions.create({
+    messages,
     model,
-    prompt,
-    temperature: 0.9,
-    max_tokens: 1000,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-  }).then(res => res.data.choices[0].text).catch((err) => `ChatGPT was unable to find an answer for that! (Error: ${err.message})`
+  }).then(res => 
+    res.choices[0].message.content
+).catch((err) => `ChatGPT was unable to find an answer for that! (Error: ${err.message})`
   );
 
   return res;
