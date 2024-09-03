@@ -35,6 +35,8 @@ Demo Website Deployed to Vercel: https://smart-messenger.vercel.app/chat/BxKH1lB
    OPENAI_API_KEY=<your_openai_api_key>
    NEXTAUTH_SECRET=MyNextAuthSecret
    FIREBASE_SERVICE_ACCOUNT_KEY={<your_firebase_service_account_key_with_line_breaks_removed>}
+   ORGANIZATION_ID=<your_openai_organization_id>
+   PROJECT_ID=<optional_openai_project_id>
    ```
 
 5. Add origins and redirect url in Google Cloud Console for your project, navigate to APIs & Services-Credentials-OAuth 2.0 Client IDs-Web client(auto created by Google Service), you should see the page like below:
