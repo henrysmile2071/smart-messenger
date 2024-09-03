@@ -7,6 +7,11 @@ import admin from 'firebase-admin'
 type Data = {
   answer: string
 }
+type ChatCompletionMessageRole = 'system' | 'user' | 'assistant';
+type ChatCompletionMessageParam = {
+  role: ChatCompletionMessageRole;
+  content: string;
+}; 
 
 export default async function handler(
   req: NextApiRequest,
@@ -25,7 +30,7 @@ export default async function handler(
   }
 
   //ChatGPT query
-  const messages = [{
+  const messages: ChatCompletionMessageParam[] = [{
     "role": "system", "content": "You are a helpful assistant."
   }, {
     "role": "user", "content": prompt
